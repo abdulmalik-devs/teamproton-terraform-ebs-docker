@@ -46,7 +46,7 @@ resource "aws_elastic_beanstalk_environment" "frontend" {
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name      = "IamInstanceProfile"
-    value     = var.frontend_ebs_ec2_role_launch_config
+    value     = var.frontend_instance_profile_name
   }
 
   setting {
@@ -82,7 +82,7 @@ resource "aws_elastic_beanstalk_environment" "frontend" {
   setting {
     namespace = "aws:elasticbeanstalk:environment:process:default"
     name      = "IamInstanceProfile"
-    value     = var.frontend_ebs_ec2_role_environ_default
+    value     = var.frontend_instance_profile_name_default
   }
 
   setting {
@@ -153,7 +153,7 @@ resource "aws_elastic_beanstalk_environment" "admin" {
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name      = "IamInstanceProfile"
-    value     = var.admin_ebs_ec2_role_launch_config
+    value     = var.admin_instance_profile_name
   }
 
   setting {
@@ -189,7 +189,7 @@ resource "aws_elastic_beanstalk_environment" "admin" {
   setting {
     namespace = "aws:elasticbeanstalk:environment:process:default"
     name      = "IamInstanceProfile"
-    value     = var.admin_ebs_ec2_role_environ_default
+    value     = var.admin_instance_profile_name_default
   }
 
   setting {
@@ -257,7 +257,7 @@ resource "aws_elastic_beanstalk_environment" "backend" {
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name      = "IamInstanceProfile"
-    value     = var.backend_ebs_ec2_role_launch_config
+    value     = var.backend_instance_profile_name
   }
 
   setting {
@@ -293,7 +293,7 @@ resource "aws_elastic_beanstalk_environment" "backend" {
   setting {
     namespace = "aws:elasticbeanstalk:environment:process:default"
     name      = "IamInstanceProfile"
-    value     = var.backend_ebs_ec2_role_environ_default
+    value     = var.backend_instance_profile_name_default
   }
 
   setting {

@@ -3,8 +3,8 @@ variable "ebs_app_name" {}
 variable "ebs_frontend_env_name" {}
 variable "ebs_frontend_vpc_id" {}
 variable "frontend_public_subnet_id" {}
-variable "frontend_ebs_ec2_role_launch_config" {}
-variable "frontend_ebs_ec2_role_environ_default" {}
+variable "frontend_instance_profile_name" {}
+variable "frontend_instance_profile_name_default" {}
 variable "frontend_sg" {}
 variable "frontend_bucket" {}
 
@@ -13,8 +13,8 @@ variable "frontend_key" {}
 variable "ebs_admin_env_name" {}
 variable "ebs_admin_vpc_id" {}
 variable "admin_public_subnet_id" {}
-variable "admin_ebs_ec2_role_launch_config" {}
-variable "admin_ebs_ec2_role_environ_default" {}
+variable "admin_instance_profile_name" {}
+variable "admin_instance_profile_name_default" {}
 variable "admin_sg" {}
 variable "admin_bucket" {}
 variable "admin_key" {}
@@ -22,8 +22,8 @@ variable "admin_key" {}
 variable "ebs_backend_env_name" {}
 variable "ebs_backend_vpc_id" {}
 variable "backend_private_subnet_id" {}
-variable "backend_ebs_ec2_role_launch_config" {}
-variable "backend_ebs_ec2_role_environ_default" {}
+variable "backend_instance_profile_name" {}
+variable "backend_instance_profile_name_default" {}
 variable "backend_sg" {}
 variable "backend_bucket" {}
 variable "backend_key" {}
