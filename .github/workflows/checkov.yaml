@@ -1,4 +1,4 @@
-name: Deployment Workflows
+name: Scan with CheckOv
 
 on:
   push:

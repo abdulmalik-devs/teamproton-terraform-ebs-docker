@@ -9,7 +9,7 @@ resource "aws_elastic_beanstalk_environment" "frontend" {
   name                = var.ebs_frontend_env_name
   application         = aws_elastic_beanstalk_application.webapp_deploy.name
   version_label         = aws_elastic_beanstalk_application_version.frontend_version.name
-  solution_stack_name = "64bit Amazon Linux 2 v5.4.4 running Docker 20.10.7"
+  solution_stack_name = "64bit Amazon Linux 2018.03 v2.26.0 running Multi-container Docker 19.03.13-ce (Generic)"
   wait_for_ready_timeout = "15m"
 
 
@@ -120,7 +120,7 @@ resource "aws_elastic_beanstalk_environment" "admin" {
   name                = var.ebs_admin_env_name
   application         = aws_elastic_beanstalk_application.webapp_deploy.name
   version_label         = aws_elastic_beanstalk_application_version.admin_version.name
-  solution_stack_name = "64bit Amazon Linux 2 v5.4.4 running Docker 20.10.7"
+  solution_stack_name = "64bit Amazon Linux 2018.03 v2.26.0 running Multi-container Docker 19.03.13-ce (Generic)"
   wait_for_ready_timeout = "15m"
 
 
@@ -232,7 +232,7 @@ resource "aws_elastic_beanstalk_environment" "backend" {
   name                = var.ebs_backend_env_name
   application         = aws_elastic_beanstalk_application.webapp_deploy.name
   version_label         = aws_elastic_beanstalk_application_version.backend_version.name
-  solution_stack_name = "64bit Amazon Linux 2 v5.4.4 running Docker 20.10.7"
+  solution_stack_name = "64bit Amazon Linux 2018.03 v2.26.0 running Multi-container Docker 19.03.13-ce (Generic)"
   wait_for_ready_timeout = "15m"
 
   setting {
