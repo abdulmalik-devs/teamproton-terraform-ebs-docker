@@ -1,49 +1,4 @@
-name: Scan with CheckOv
-
-on:
-  push:
-    branches: ['main']
-
-jobs:
-  checking-for-vulnerability:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install Checkov
-        run: pip3 install checkov
-
-      - name: Install Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 1.1.9
-
-      - name: Terraform Init
-        working-directory: ./
-        run: terraform init
-
-      - name: Terraform Plan
-        id: tf-plan
-        working-directory: ./
-        run: terraform plan -out=tfplan
-
-      - name: Export Terraform Plan
-        working-directory: ./
-        run: terraform show -json tfplan > tfplan.json
-
-      - name: Scan Terraform Plan with Checkov
-        uses: bridgecrewio/checkov-action@v3
-        with:
-          checkov_args: |
-            --file ./terraform/tfplan.json
-          working_directory: './'
-          checkov_config: ./checkov.yaml
-          checkov_output_file: ./checkov.report
-          fail_on_error: false
-
-
-# name: Deployment Workflows
+# name: Scan with CheckOv
 
 # on:
 #   push:
@@ -66,47 +21,92 @@ jobs:
 
 #       - name: Terraform Init
 #         working-directory: ./
-#         env:
-#           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 #         run: terraform init
 
 #       - name: Terraform Plan
 #         id: tf-plan
 #         working-directory: ./
-#         env:
-#           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 #         run: terraform plan -out=tfplan
 
 #       - name: Export Terraform Plan
 #         working-directory: ./
-#         env:
-#           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 #         run: terraform show -json tfplan > tfplan.json
 
-#       - name: Scan with Checkov
+#       - name: Scan Terraform Plan with Checkov
 #         uses: bridgecrewio/checkov-action@v3
 #         with:
-#           directory: ./
-#           continue-on-error: true
+#           checkov_args: |
+#             --file ./terraform/tfplan.json
+#           working_directory: './'
+#           checkov_config: ./checkov.yaml
+#           checkov_output_file: ./checkov.report
+#           fail_on_error: false
 
-#       - name: Scan Terraform plan with Checkov
-#         continue-on-error: true
-#         run: checkov -f tfplan.json
 
-#       - name: Scan for Frontend Vulnerability with Checkov
-#         continue-on-error: true
-#         run: checkov -d ./application/frontend
+# # name: Deployment Workflows
 
-#       - name: Scan for Admin Vulnerability with Checkov
-#         continue-on-error: true
-#         run: checkov -d ./application/admin
+# # on:
+# #   push:
+# #     branches: ['main']
 
-#       - name: Scan for Backend Vulnerability with Checkov
-#         continue-on-error: true
-#         run: checkov -d ./application/backend
+# # jobs:
+# #   checking-for-vulnerability:
+# #     runs-on: ubuntu-latest
+# #     steps:
+# #       - name: Checkout code
+# #         uses: actions/checkout@v2
+
+# #       - name: Install Checkov
+# #         run: pip3 install checkov
+
+# #       - name: Install Terraform
+# #         uses: hashicorp/setup-terraform@v1
+# #         with:
+# #           terraform_version: 1.1.9
+
+# #       - name: Terraform Init
+# #         working-directory: ./
+# #         env:
+# #           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+# #           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+# #         run: terraform init
+
+# #       - name: Terraform Plan
+# #         id: tf-plan
+# #         working-directory: ./
+# #         env:
+# #           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+# #           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+# #         run: terraform plan -out=tfplan
+
+# #       - name: Export Terraform Plan
+# #         working-directory: ./
+# #         env:
+# #           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+# #           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+# #         run: terraform show -json tfplan > tfplan.json
+
+# #       - name: Scan with Checkov
+# #         uses: bridgecrewio/checkov-action@v3
+# #         with:
+# #           directory: ./
+# #           continue-on-error: true
+
+# #       - name: Scan Terraform plan with Checkov
+# #         continue-on-error: true
+# #         run: checkov -f tfplan.json
+
+# #       - name: Scan for Frontend Vulnerability with Checkov
+# #         continue-on-error: true
+# #         run: checkov -d ./application/frontend
+
+# #       - name: Scan for Admin Vulnerability with Checkov
+# #         continue-on-error: true
+# #         run: checkov -d ./application/admin
+
+# #       - name: Scan for Backend Vulnerability with Checkov
+# #         continue-on-error: true
+# #         run: checkov -d ./application/backend
 
 
 
