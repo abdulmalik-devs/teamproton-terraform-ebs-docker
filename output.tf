@@ -45,7 +45,3 @@ output "ebs-back-version_label" {
 output "database-endpoint" {
   value = module.database.rds_endpoint
 }
-
-output "ECR_ID" {
-  value = module.ECR.ecr_id
-}
