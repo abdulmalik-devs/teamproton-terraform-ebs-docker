@@ -1,0 +1,59 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+      {
+        "name": "nginx",
+        "image": "170264892917.dkr.ecr.us-east-1.amazonaws.com/nginx/nginx:latest",
+        "hostname": "nginx",
+        "essential": true,
+        "portMappings": [
+          {
+            "hostPort": 80,
+            "containerPort": 80
+          }
+        ],
+        "links": ["admin", "frontend", "backend"],
+        "memory": 300
+      },
+      {
+        "name": "admin-container",
+        "image": "170264892917.dkr.ecr.us-east-1.amazonaws.com/admin/admin:latest",
+        "hostname": "admin",
+        "essential": true,
+        "memory": 512,
+        "portMappings": [
+          {
+            "hostPort": 3000,
+            "containerPort": 3000
+          }
+        ]
+      },
+      {
+        "name": "frontend",
+        "image": "170264892917.dkr.ecr.us-east-1.amazonaws.com/frontend/frontend:latest",
+        "hostname": "frontend",
+        "essential": true,
+        "memory": 512,
+        "portMappings": [
+          {
+            "hostPort": 3001,
+            "containerPort": 3001
+          }
+        ]
+      },
+      {
+        "name": "backend",
+        "image": "170264892917.dkr.ecr.us-east-1.amazonaws.com/backend/backend:latest",
+        "hostname": "backend",
+        "essential": true,
+        "memory": 512,
+        "portMappings": [
+          {
+            "hostPort": 5002,
+            "containerPort": 5002
+          }
+        ]
+      }
+    ]
+}
+  

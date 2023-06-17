@@ -1,0 +1,172 @@
+# # name: Deployment Workflows
+
+# # on:
+# #   push:
+# #     branches: ['main']
+
+# # jobs:
+# #   checking-for-vulnerability:
+# #     runs-on: ubuntu-latest
+# #     steps:
+# #       - name: Checkout code
+# #         uses: actions/checkout@v2
+
+# #       - name: Install Checkov
+# #         run: pip3 install checkov
+
+# #       - name: Install Terraform
+# #         uses: hashicorp/setup-terraform@v1
+# #         with:
+# #           terraform_version: 1.1.9
+
+# #       - name: Terraform Init
+# #         working-directory: ./
+# #         env:
+# #           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+# #           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+# #         run: terraform init
+
+# #       - name: Terraform Plan
+# #         id: tf-plan
+# #         working-directory: ./
+# #         env:
+# #           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+# #           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+# #         run: terraform plan -out=tfplan
+
+# #       - name: Export Terraform Plan
+# #         working-directory: ./
+# #         env:
+# #           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+# #           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+# #         run: terraform show -json tfplan > tfplan.json
+
+# #       - name: Scan with Checkov
+# #         uses: bridgecrewio/checkov-action@v3
+# #         with:
+# #           directory: ./
+# #           continue-on-error: true
+
+# #       - name: Scan Terraform plan with Checkov
+# #         continue-on-error: true
+# #         run: checkov -f tfplan.json
+
+# #       - name: Scan for Frontend Vulnerability with Checkov
+# #         continue-on-error: true
+# #         run: checkov -d ./application/frontend
+
+# #       - name: Scan for Admin Vulnerability with Checkov
+# #         continue-on-error: true
+# #         run: checkov -d ./application/admin
+
+# #       - name: Scan for Backend Vulnerability with Checkov
+# #         continue-on-error: true
+# #         run: checkov -d ./application/backend
+# name: Deployment Workflows
+
+# on:
+#   push:
+#     branches: ['main']
+
+# jobs:
+#   checking-for-vulnerability:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+
+#       - name: Install Checkov
+#         run: pip3 install checkov
+
+#       - name: Install Terraform
+#         uses: hashicorp/setup-terraform@v1
+#         with:
+#           terraform_version: 1.1.9
+
+#       - name: Terraform Init
+#         working-directory: ./
+#         run: terraform init
+
+#       - name: Terraform Plan
+#         id: tf-plan
+#         working-directory: ./
+#         run: terraform plan -out=tfplan
+
+#       - name: Export Terraform Plan
+#         working-directory: ./
+#         run: terraform show -json tfplan > tfplan.json
+
+#       - name: Scan Terraform Plan with Checkov
+#         uses: bridgecrewio/checkov-action@v3
+#         with:
+#           checkov_args: |
+#             --file ./terraform/tfplan.json
+#           working_directory: './'
+#           checkov_config: ./checkov.yaml
+#           checkov_output_file: ./checkov.report
+#           fail_on_error: false
+
+#       - name: Checkov Scan for Frontend Zipped file
+#         uses: bridgecrewio/checkov-action@v3
+#         with:
+#           directory: './application/frontend/frontend.zip'
+#           repo_root_for_plan_enrichment: './'
+#           soft_fail: false
+#           continue-on-error: true
+
+#       - name: Checkov Scan for Admin Zipped file
+#         uses: bridgecrewio/checkov-action@v3
+#         with:
+#           directory: './application/admin/admin.zip'
+#           repo_root_for_plan_enrichment: './'
+#           soft_fail: false
+#           continue-on-error: true
+
+#       - name: Checkov Scan for Backend Zipped file
+#         uses: bridgecrewio/checkov-action@v3
+#         with:
+#           directory: './application/frontend/backend.zip'
+#           repo_root_for_plan_enrichment: './'
+#           soft_fail: false
+#           continue-on-error: true
+
+#       - name: Checkov Scan for Backend Zipped file
+#         uses: checkov/checkov-action@v3.1.0
+#         with:
+#           directory: './application/backend/backend.zip'
+#           scan_all_files: true
+#           fail_on_error: false
+#           continue_on_failure: true
+#           severity: info
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

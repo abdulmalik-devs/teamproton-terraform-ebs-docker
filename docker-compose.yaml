@@ -1,0 +1,44 @@
+version: "3.3"
+services:
+  nginx:
+    depends_on:
+      - frontend
+      - admin
+      - backend
+    restart: always # because it is routing traffic to our entire app
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - '80:80'
+  frontend:
+    build:
+      context: ./application/frontend
+      dockerfile: Dockerfile
+    ports:
+     - '3000:3000'
+    volumes:
+      - /app/node_modules # Inside the container, don't try to override this folder, just leave as is
+    restart: on-failure
+    container_name: frontend-container
+  admin:
+    build:
+      context: ./application/admin
+    ports:
+     - '3001:3001'
+    volumes:
+      - /app/node_modules # Inside the container, don't try to override this folder, just leave as is
+    restart: on-failure
+    container_name: admin-container
+  backend:
+    build:
+      context: ./application/backend
+      dockerfile: Dockerfile
+    ports:
+     - '5002:5002'
+    restart: on-failure
+    container_name: backend-container
+    volumes:
+      - /app/node_modules # Inside the container, don't try to override this folder, just leave as is
+    env_file:
+      - ./application/backend/.env
