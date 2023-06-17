@@ -64,6 +64,7 @@ jobs:
         working-directory: ./
 
   deploy-to-ebs:
+    runs-on: ubuntu-latest
     needs: provision_infrastructure
     steps:
       - name: Checkout code
