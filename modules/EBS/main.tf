@@ -261,36 +261,6 @@ resource "aws_elastic_beanstalk_environment" "backend" {
   }
 
   setting {
-    namespace = "aws:elasticbeanstalk:environment"
-    name      = "EnvironmentType"
-    value     = "LoadBalanced"
-  }
-
-  setting {
-    namespace = "aws:elasticbeanstalk:environment"
-    name      = "ServiceRole"
-    value     = "aws-elasticbeanstalk-service-role"
-  }
-
-  setting {
-    namespace = "aws:elasticbeanstalk:environment:process:default"
-    name      = "HealthCheckPath"
-    value     = "/health"
-  }
-
-  setting {
-    namespace = "aws:elasticbeanstalk:environment:process:default"
-    name      = "Executor"
-    value     = "node"
-  }
-
-  setting {
-    namespace = "aws:elasticbeanstalk:environment:process:default"
-    name      = "Version"
-    value     = "18"
-  }
-
-  setting {
     namespace = "aws:elasticbeanstalk:environment:process:default"
     name      = "IamInstanceProfile"
     value     = var.backend_instance_profile_name_default
@@ -298,26 +268,8 @@ resource "aws_elastic_beanstalk_environment" "backend" {
 
   setting {
     namespace = "aws:elasticbeanstalk:environment:process:default"
-    name      = "InstanceType"
-    value     = "t2.micro"
-  }
-
-  setting {
-    namespace = "aws:elasticbeanstalk:environment:process:default"
-    name      = "RootObject"
-    value     = "index.js"
-  }
-
-  setting {
-    namespace = "aws:elasticbeanstalk:environment:process:default"
     name      = "IgnoreHealthCheck"
-    value     = "false"
-  }
-
-  setting {
-    namespace = "aws:elasticbeanstalk:application:environment"
-    name      = "NODE_ENV"
-    value     = "production"
+    value     = "true"
   }
 }
 
