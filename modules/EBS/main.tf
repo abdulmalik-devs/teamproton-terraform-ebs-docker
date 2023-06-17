@@ -103,12 +103,13 @@ resource "aws_elastic_beanstalk_environment" "frontend" {
     value     = "false"
   }
 
-  setting {
-    namespace = "aws:elasticbeanstalk:environment:process:default"
-    name      = "EnvironmentVariables"
-    value     = "NODE_ENV=production"
+   setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "NODE_ENV"
+    value     = "production"
   }
 }
+
 
 # Create an Elastic Beanstalk environment for Admin App
 resource "aws_elastic_beanstalk_environment" "admin" {
@@ -210,9 +211,9 @@ resource "aws_elastic_beanstalk_environment" "admin" {
   }
 
   setting {
-    namespace = "aws:elasticbeanstalk:environment:process:default"
-    name      = "EnvironmentVariables"
-    value     = "NODE_ENV=production"
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "NODE_ENV"
+    value     = "production"
   }
 }
 
@@ -272,7 +273,7 @@ resource "aws_elastic_beanstalk_environment" "backend" {
   }
 
   setting {
-    namespace = "aws:elasticbeanstalk:environment"
+    namespace = "aws:elasticbeanstalk:environment:process:default"
     name      = "HealthCheckPath"
     value     = "/health"
   }
@@ -314,9 +315,9 @@ resource "aws_elastic_beanstalk_environment" "backend" {
   }
 
   setting {
-    namespace = "aws:elasticbeanstalk:environment:process:default"
-    name      = "EnvironmentVariables"
-    value     = "NODE_ENV=production"
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "NODE_ENV"
+    value     = "production"
   }
 }
 
