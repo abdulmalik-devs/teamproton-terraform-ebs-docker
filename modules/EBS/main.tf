@@ -108,11 +108,6 @@ resource "aws_elastic_beanstalk_environment" "frontend" {
     name      = "EnvironmentVariables"
     value     = "NODE_ENV=production"
   }
-  setting {
-    namespace = "aws:elasticbeanstalk:application"
-    name      = "MaxFileUploadSize"
-    value     = "2097152"
-  }
 }
 
 # Create an Elastic Beanstalk environment for Admin App
@@ -219,12 +214,6 @@ resource "aws_elastic_beanstalk_environment" "admin" {
     name      = "EnvironmentVariables"
     value     = "NODE_ENV=production"
   }
-
-  setting {
-    namespace = "aws:elasticbeanstalk:application"
-    name      = "MaxFileUploadSize"
-    value     = "2097152"
-  }
 }
 
 # Create an Elastic Beanstalk environment for Backend App
@@ -328,12 +317,6 @@ resource "aws_elastic_beanstalk_environment" "backend" {
     namespace = "aws:elasticbeanstalk:environment:process:default"
     name      = "EnvironmentVariables"
     value     = "NODE_ENV=production"
-  }
-
-  setting {
-    namespace = "aws:elasticbeanstalk:application"
-    name      = "MaxFileUploadSize"
-    value     = "2097152"
   }
 }
 
