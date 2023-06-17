@@ -14,7 +14,7 @@ resource "aws_elastic_beanstalk_environment" "frontend" {
 
 
   setting {
-    namespace = "aws:elasticbeanstalk:environment"
+    namespace = "aws:ec2:vpc"
     name      = "VPCId"
     value     = var.ebs_frontend_vpc_id
   }
@@ -120,7 +120,7 @@ resource "aws_elastic_beanstalk_environment" "admin" {
 
 
   setting {
-    namespace = "aws:elasticbeanstalk:environment"
+    namespace = "aws:ec2:vpc"
     name      = "VPCId"
     value     = var.ebs_admin_vpc_id
   }
@@ -225,7 +225,7 @@ resource "aws_elastic_beanstalk_environment" "backend" {
   wait_for_ready_timeout = "15m"
 
   setting {
-    namespace = "aws:elasticbeanstalk:environment"
+    namespace = "aws:ec2:vpc"
     name      = "VPCId"
     value     = var.ebs_backend_vpc_id
   }
