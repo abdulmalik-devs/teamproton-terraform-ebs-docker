@@ -1,0 +1,9 @@
+{
+    "yaml.schemas": {
+        "https://json.schemastore.org/eslintrc.json": [
+            "file:///home/devsec/Documents/DevOps/Virtual/Project_5/infrastructure/.github/workflows/deploy.yaml",
+            "file:///home/devsec/Documents/DevOps/Virtual/Project_5/.github/workflows/deploy.yml",
+            "file:///home/devsec/Documents/DevOps/Virtual/Project_5/.github/workflows/deploy.yaml"
+        ]
+    }
+}
