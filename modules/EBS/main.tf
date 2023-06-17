@@ -266,6 +266,8 @@ resource "aws_elastic_beanstalk_environment" "backend" {
     value     = var.backend_instance_profile_name_default
   }
 
+
+
   setting {
     namespace = "aws:elasticbeanstalk:environment:process:default"
     name      = "IgnoreHealthCheck"
