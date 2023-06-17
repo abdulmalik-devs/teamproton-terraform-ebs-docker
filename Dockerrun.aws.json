@@ -16,7 +16,7 @@
         "memory": 300
       },
       {
-        "name": "admin-container",
+        "name": "admin",
         "image": "170264892917.dkr.ecr.us-east-1.amazonaws.com/admin/admin:latest",
         "hostname": "admin",
         "essential": true,
