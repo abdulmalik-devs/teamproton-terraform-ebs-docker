@@ -18,10 +18,6 @@ output "back-key" {
   value = module.s3.backend_file_name
 }
 
-output "ecr_repo_id" {
-  value = module.ECR.ecr_id
-}
-
 output "ebs-front-name" {
   value = module.EBS.frontend_name
 }
