@@ -384,7 +384,7 @@ resource "aws_elastic_beanstalk_environment" "backend" {
   setting {
     namespace = "aws:elb:healthcheck"
     name      = "Target"
-    value     = "HTTP:80/"
+    value     = "HTTP:80/healthcheck"
   }
 }
 
