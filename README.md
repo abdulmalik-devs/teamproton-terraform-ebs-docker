@@ -99,10 +99,10 @@ aws configure
 * [Docker Documentation](https://docs.docker.com)
 
 ## Author
-
-* [AbduMalik Ololade](https://github.com/abdulmalik-devs) *
-[Ibraheem](https://github.com/eabrahym75)
-[Naseer](https://github.com/Nahsc0)
+# Team Proton
+* [AbduMalik Ololade](https://github.com/abdulmalik-devs) (Team Lead)
+* [Ibraheem Ayantola](https://github.com/eabrahym75)
+* [Yusuf Naseer](https://github.com/Nahsc0)
 
 
 ## Date
