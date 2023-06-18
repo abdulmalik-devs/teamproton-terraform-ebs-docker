@@ -99,7 +99,7 @@ aws configure
 * [Docker Documentation](https://docs.docker.com)
 
 ## Author
-# Team Proton
+### Team Proton
 * [AbduMalik Ololade](https://github.com/abdulmalik-devs) (Team Lead)
 * [Ibraheem Ayantola](https://github.com/eabrahym75)
 * [Yusuf Naseer](https://github.com/Nahsc0)
