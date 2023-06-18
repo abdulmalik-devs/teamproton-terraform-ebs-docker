@@ -93,6 +93,12 @@ resource "aws_elastic_beanstalk_environment" "frontend" {
     name      = "AssociatePublicIpAddress"
     value     = "true"
   }
+
+  setting {
+  namespace = "aws:elasticbeanstalk:managedactions:platformupdate"
+  name      = "UpdateLevel"
+  value     = "patch" # or "minor" for both minor and patch updates
+}
 }
 
 # Create an Elastic Beanstalk environment for Admin App
@@ -192,7 +198,11 @@ resource "aws_elastic_beanstalk_environment" "admin" {
     name      = "PreferredStartTime"
     value     = "Tue:10:00" # Example: Updates on Tuesdays at 10:00 AM (UTC)
   }
-
+  setting {
+  namespace = "aws:elasticbeanstalk:managedactions:platformupdate"
+  name      = "UpdateLevel"
+  value     = "patch" # or "minor" for both minor and patch updates
+}
 }
 
 # Create an Elastic Beanstalk environment for Backend App
@@ -280,6 +290,11 @@ resource "aws_elastic_beanstalk_environment" "backend" {
     name      = "PreferredStartTime"
     value     = "Tue:10:00" # Example: Updates on Tuesdays at 10:00 AM (UTC)
   }
+  setting {
+  namespace = "aws:elasticbeanstalk:managedactions:platformupdate"
+  name      = "UpdateLevel"
+  value     = "patch" # or "minor" for both minor and patch updates
+}
 }
 
 resource "aws_elastic_beanstalk_application_version" "frontend_version" {
