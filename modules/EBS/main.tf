@@ -261,7 +261,7 @@ resource "aws_elastic_beanstalk_environment" "admin" {
   }
   setting {
     namespace = "aws:elb:healthcheck"
-    ame      = "Target"
+    name      = "Target"
     value     = "HTTP:80/"
   }
 }
