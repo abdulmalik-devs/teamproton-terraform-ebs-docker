@@ -95,10 +95,41 @@ resource "aws_elastic_beanstalk_environment" "frontend" {
   }
 
   setting {
-  namespace = "aws:elasticbeanstalk:managedactions:platformupdate"
-  name      = "UpdateLevel"
-  value     = "patch" # or "minor" for both minor and patch updates
-}
+    namespace = "aws:elasticbeanstalk:managedactions:platformupdate"
+    name      = "UpdateLevel"
+    value     = "patch" # or "minor" for both minor and patch updates
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "ServiceRole"
+    value     = "arn:aws:iam::170264892917:role/aws-elasticbeanstalk-service-role"
+  }
+  setting {
+    namespace = "aws:elb:healthcheck"
+    name      = "HealthyThreshold"
+    value     = "3"
+  }
+  setting {
+    namespace = "aws:elb:healthcheck"
+    name      = "Interval"
+    value     = "30"
+  }
+  setting {
+    namespace = "aws:elb:healthcheck"
+    name      = "Timeout"
+    value     = "5"
+  }
+  setting {
+    namespace = "aws:elb:healthcheck"
+    name      = "UnhealthyThreshold"
+    value     = "5"
+  }
+  setting {
+    namespace = "aws:elb:healthcheck"
+    name      = "Target"
+    value     = "HTTP:80/"
+  }
 }
 
 # Create an Elastic Beanstalk environment for Admin App
@@ -199,10 +230,40 @@ resource "aws_elastic_beanstalk_environment" "admin" {
     value     = "Tue:10:00" # Example: Updates on Tuesdays at 10:00 AM (UTC)
   }
   setting {
-  namespace = "aws:elasticbeanstalk:managedactions:platformupdate"
-  name      = "UpdateLevel"
-  value     = "patch" # or "minor" for both minor and patch updates
-}
+    namespace = "aws:elasticbeanstalk:managedactions:platformupdate"
+    name      = "UpdateLevel"
+    value     = "patch" # or "minor" for both minor and patch updates
+  }
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "ServiceRole"
+    value     = "arn:aws:iam::170264892917:role/aws-elasticbeanstalk-service-role"
+  }
+  setting {
+    namespace = "aws:elb:healthcheck"
+    name      = "HealthyThreshold"
+    value     = "3"
+  }
+  setting {
+    namespace = "aws:elb:healthcheck"
+    name      = "Interval"
+    value     = "30"
+  }
+  setting {
+    namespace = "aws:elb:healthcheck"
+    name      = "Timeout"
+    value     = "5"
+  }
+  setting {
+    namespace = "aws:elb:healthcheck"
+    name      = "UnhealthyThreshold"
+    value     = "5"
+  }
+  setting {
+    namespace = "aws:elb:healthcheck"
+    ame      = "Target"
+    value     = "HTTP:80/"
+  }
 }
 
 # Create an Elastic Beanstalk environment for Backend App
@@ -291,10 +352,40 @@ resource "aws_elastic_beanstalk_environment" "backend" {
     value     = "Tue:10:00" # Example: Updates on Tuesdays at 10:00 AM (UTC)
   }
   setting {
-  namespace = "aws:elasticbeanstalk:managedactions:platformupdate"
-  name      = "UpdateLevel"
-  value     = "patch" # or "minor" for both minor and patch updates
-}
+    namespace = "aws:elasticbeanstalk:managedactions:platformupdate"
+    name      = "UpdateLevel"
+    value     = "patch" # or "minor" for both minor and patch updates
+  }
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "ServiceRole"
+    value     = "arn:aws:iam::170264892917:role/aws-elasticbeanstalk-service-role"
+  }
+  setting {
+    namespace = "aws:elb:healthcheck"
+    name      = "HealthyThreshold"
+    value     = "3"
+  }
+  setting {
+    namespace = "aws:elb:healthcheck"
+    name      = "Interval"
+    value     = "30"
+  }
+  setting {
+    namespace = "aws:elb:healthcheck"
+    name      = "Timeout"
+    value     = "5"
+  }
+  setting {
+    namespace = "aws:elb:healthcheck"
+    name      = "UnhealthyThreshold"
+    value     = "5"
+  }
+  setting {
+    namespace = "aws:elb:healthcheck"
+    name      = "Target"
+    value     = "HTTP:80/"
+  }
 }
 
 resource "aws_elastic_beanstalk_application_version" "frontend_version" {
