@@ -100,7 +100,7 @@ aws configure
 
 ## Author
 
-[AbduMalik Ololade](https://github.com/abdulmalik-devs)
+* [AbduMalik Ololade](https://github.com/abdulmalik-devs) *
 [Ibraheem](https://github.com/eabrahym75)
 [Naseer](https://github.com/Nahsc0)
 
