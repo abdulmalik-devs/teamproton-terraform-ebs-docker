@@ -23,6 +23,10 @@ resource "aws_iam_role_policy_attachment" "webapp_attachment" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 }
 
+resource "aws_iam_role_policy_attachment" "instance_role_policy_attachment" {
+  role       = aws_iam_role.example_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AWSElasticBeanstalkWebTier"
+}
 resource "aws_iam_instance_profile" "webapp_instance_profile" {
   name = "webapp-instance-profile"
   role = aws_iam_role.webapp_role.name

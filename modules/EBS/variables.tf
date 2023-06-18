@@ -14,7 +14,6 @@ variable "ebs_admin_env_name" {}
 variable "ebs_admin_vpc_id" {}
 variable "admin_public_subnet_id" {}
 variable "admin_instance_profile_name" {}
-variable "admin_instance_profile_name_default" {}
 variable "admin_sg" {}
 variable "admin_bucket" {}
 variable "admin_key" {}
@@ -23,7 +22,6 @@ variable "ebs_backend_env_name" {}
 variable "ebs_backend_vpc_id" {}
 variable "backend_private_subnet_id" {}
 variable "backend_instance_profile_name" {}
-variable "backend_instance_profile_name_default" {}
 variable "backend_sg" {}
 variable "backend_bucket" {}
 variable "backend_key" {}
