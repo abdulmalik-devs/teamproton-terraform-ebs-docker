@@ -284,11 +284,11 @@ resource "aws_elastic_beanstalk_environment" "backend" {
   #   name      = "Subnets"
   #   value     = var.backend_private_subnet_id
   # }
-  setting {
-    namespace = "aws:autoscaling:launchconfiguration"
-    name      = "SecurityGroups"
-    value     = var.backend_sg
-  }
+  # setting {
+  #   namespace = "aws:autoscaling:launchconfiguration"
+  #   name      = "SecurityGroups"
+  #   value     = var.backend_sg
+  # }
   setting {
     namespace = "aws:elasticbeanstalk:application:environment"
     name      = "DATABASE_CONNECTION_STRING"
