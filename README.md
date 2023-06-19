@@ -2,6 +2,9 @@
 
 This repository contains the Terraform configuration and Github Actions workflow to deploy an Micro-service web application with RDS on AWS .
 
+## Architecture
+![architecture](https://github.com/abdulmalik-devs/teamproton-terraform-ebs-docker/assets/62616273/e1fba4a0-173e-4c40-9039-ca58f53964d5)
+
 ## Steps to recreate the project
 
 1. Manually build and push images to ECR.
@@ -96,10 +99,10 @@ aws configure
 * [Docker Documentation](https://docs.docker.com)
 
 ## Author
-
-[AbduMalik Ololade](https://github.com/abdulmalik-devs)
-[Ibraheem](https://github.com/eabrahym75)
-[Naseer](https://github.com/Nahsc0)
+##### ![Screenshot from 2023-06-18 17-27-47](https://github.com/abdulmalik-devs/teamproton-terraform-ebs-docker/assets/62616273/a730f765-3b2f-4b89-abe5-a7d9a6195ad4)
+* [AbduMalik Ololade](https://github.com/abdulmalik-devs) (Team Lead)
+* [Ibraheem Ayantola](https://github.com/eabrahym75)
+* [Yusuf Naseer](https://github.com/Nahsc0)
 
 
 ## Date
