@@ -99,7 +99,7 @@ aws configure
 * [Docker Documentation](https://docs.docker.com)
 
 ## Author
-##### ![Screenshot from 2023-06-18 17-27-47](https://github.com/abdulmalik-devs/teamproton-terraform-ebs-docker/assets/62616273/e3c0b73b-b913-45e6-8541-7a438f9cbab7)
+##### ![Screenshot from 2023-06-18 17-27-47](https://github.com/abdulmalik-devs/teamproton-terraform-ebs-docker/assets/62616273/a730f765-3b2f-4b89-abe5-a7d9a6195ad4)
 * [AbduMalik Ololade](https://github.com/abdulmalik-devs) (Team Lead)
 * [Ibraheem Ayantola](https://github.com/eabrahym75)
 * [Yusuf Naseer](https://github.com/Nahsc0)
