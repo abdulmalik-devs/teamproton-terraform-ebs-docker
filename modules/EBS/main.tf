@@ -294,6 +294,8 @@ resource "aws_elastic_beanstalk_environment" "backend" {
     name      = "DATABASE_CONNECTION_STRING"
     value     = var.database_endpoint
   }
+
+  
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name      = "InstanceType"
