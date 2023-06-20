@@ -1,95 +1,95 @@
-# name: Deployment Workflows
+name: Deployment Workflows
 
-# on:
-#   push:
-#     branches: ['main']
+on:
+  push:
+    branches: ['main']
 
-# env:
-#   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-#   AWS_REGION: ${{ secrets.AWS_REGION }}
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+  AWS_REGION: ${{ secrets.AWS_REGION }}
 
-# jobs:
-#   provision_infrastructure:
-#     runs-on: ubuntu-latest
-#     outputs:
-#       bucket_name: ${{ steps.set-ip.outputs.bucket }}
-#       frontend_key: ${{ steps.set-ip.outputs.front }}
-#       admin_key: ${{ steps.set-ip.outputs.admin }}
-#       backend_key: ${{ steps.set-ip.outputs.back }}
-#       app_env: ${{ steps.set-ip.outputs.ebs_app_name}}
-#       front_env: ${{ steps.set-ip.outputs.front_env_name }}
-#       admin_env: ${{ steps.set-ip.outputs.admin_env_name }}
-#       back_env: ${{ steps.set-ip.outputs.back_env_name }}
-#       front_ver: ${{ steps.set-ip.outputs.front_version }}
-#       admin_ver: ${{ steps.set-ip.outputs.admin_version }}
-#       back_ver: ${{ steps.set-ip.outputs.back_version }}
-#       ECR: ${{ steps.set-ip.outputs.ecr-id }}
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2   
-#       - name: Install Terraform
-#         uses: hashicorp/setup-terraform@v1
-#         with:
-#           terraform_version: 1.1.9
+jobs:
+  provision_infrastructure:
+    runs-on: ubuntu-latest
+    outputs:
+      bucket_name: ${{ steps.set-ip.outputs.bucket }}
+      frontend_key: ${{ steps.set-ip.outputs.front }}
+      admin_key: ${{ steps.set-ip.outputs.admin }}
+      backend_key: ${{ steps.set-ip.outputs.back }}
+      app_env: ${{ steps.set-ip.outputs.ebs_app_name}}
+      front_env: ${{ steps.set-ip.outputs.front_env_name }}
+      admin_env: ${{ steps.set-ip.outputs.admin_env_name }}
+      back_env: ${{ steps.set-ip.outputs.back_env_name }}
+      front_ver: ${{ steps.set-ip.outputs.front_version }}
+      admin_ver: ${{ steps.set-ip.outputs.admin_version }}
+      back_ver: ${{ steps.set-ip.outputs.back_version }}
+      ECR: ${{ steps.set-ip.outputs.ecr-id }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2   
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.1.9
 
-#       - name: Terraform Init
-#         working-directory: ./
-#         run: terraform init
+      - name: Terraform Init
+        working-directory: ./
+        run: terraform init
 
-#       - name: Terraform Plan
-#         working-directory: ./
-#         run: terraform plan
+      - name: Terraform Plan
+        working-directory: ./
+        run: terraform plan
 
-#       - name: Terraform Apply
-#         working-directory: ./
-#         run: terraform apply -auto-approve
+      - name: Terraform Apply
+        working-directory: ./
+        run: terraform apply -auto-approve
         
-#       - name: Set outputs
-#         id: set-ip
-#         run: |
-#           echo "::set-output name=bucket::$(terraform output bucket_id)"
-#           echo "::set-output name=front::$(terraform output front-key)"
-#           echo "::set-output name=admin::$(terraform output admin-key)"
-#           echo "::set-output name=back::$(terraform output back-key)"
-#           echo "::set-output name=ebs_app_name::$(terraform output app-name)"
-#           echo "::set-output name=front_env_name::$(terraform output ebs-front-name)"
-#           echo "::set-output name=admin_env_name::$(terraform output ebs-admin-name)"
-#           echo "::set-output name=back_env_name::$(terraform output ebs-back-name)" 
-#           echo "::set-output name=front_version::$(terraform output ebs-front-version_label)"
-#           echo "::set-output name=admin_version::$(terraform output ebs-admin-version_label)" 
-#           echo "::set-output name=back_version::$(terraform output ebs-back-version_label)"
-#           echo "::set-output name=ecr-id::$(terraform output ECR_ID)" 
-#         working-directory: ./
+      - name: Set outputs
+        id: set-ip
+        run: |
+          echo "::set-output name=bucket::$(terraform output bucket_id)"
+          echo "::set-output name=front::$(terraform output front-key)"
+          echo "::set-output name=admin::$(terraform output admin-key)"
+          echo "::set-output name=back::$(terraform output back-key)"
+          echo "::set-output name=ebs_app_name::$(terraform output app-name)"
+          echo "::set-output name=front_env_name::$(terraform output ebs-front-name)"
+          echo "::set-output name=admin_env_name::$(terraform output ebs-admin-name)"
+          echo "::set-output name=back_env_name::$(terraform output ebs-back-name)" 
+          echo "::set-output name=front_version::$(terraform output ebs-front-version_label)"
+          echo "::set-output name=admin_version::$(terraform output ebs-admin-version_label)" 
+          echo "::set-output name=back_version::$(terraform output ebs-back-version_label)"
+          echo "::set-output name=ecr-id::$(terraform output ECR_ID)" 
+        working-directory: ./
 
-#   deploy-to-ebs:
-#     runs-on: ubuntu-latest
-#     needs: provision_infrastructure
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
-#       - name: ebs env variable
-#         run: |
-#           echo "bucket_name=${{ needs.provision_infrastructure.outputs.bucket_name }}" >> $GITHUB_ENV
-#           echo "frontend_key=${{ needs.provision_infrastructure.outputs.frontend_key }}" >> $GITHUB_ENV
-#           echo "admin_key=${{ needs.provision_infrastructure.outputs.admin_key }}" >> $GITHUB_ENV
-#           echo "backend_key=${{ needs.provision_infrastructure.outputs.backend_key }}" >> $GITHUB_ENV
-#           echo "front_ver=${{ needs.provision_infrastructure.outputs.front_ver }}" >> $GITHUB_ENV
-#           echo "admin_ver=${{ needs.provision_infrastructure.outputs.admin_ver }}" >> $GITHUB_ENV
-#           echo "back_ver=${{ needs.provision_infrastructure.outputs.back_ver }}" >> $GITHUB_ENV
-#           echo "front_env=${{ needs.provision_infrastructure.outputs.front_env }}" >> $GITHUB_ENV
-#           echo "admin_env=${{ needs.provision_infrastructure.outputs.admin_env }}" >> $GITHUB_ENV
-#           echo "back_env=${{ needs.provision_infrastructure.outputs.back_env }}" >> $GITHUB_ENV
-#       - name: Deploy Zip file to Elastic Beanstalk environment
-#         run: |
-#           # Use the output from the previous step to deploy the docker containers to the Elastic Beanstalk environment
-#           # Example: Use AWS CLI to deploy the zipped file to Elastic Beanstalk
-#           aws elasticbeanstalk create-application-version --application-name ${{ needs.provision_infrastructure.outputs.app_env }} --version-label ${{ needs.provision_infrastructure.outputs.front_ver }} --source-bundle S3Bucket=$GITHUB_ENV.BUCKET_NAME,S3Key=$GITHUB_ENV.FRONTEND_KEY
-#           aws elasticbeanstalk update-environment --environment-name ${{ needs.provision_infrastructure.outputs.front_env }} --version-label ${{ needs.provision_infrastructure.outputs.front_ver }}
+  deploy-to-ebs:
+    runs-on: ubuntu-latest
+    needs: provision_infrastructure
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: ebs env variable
+        run: |
+          echo "bucket_name=${{ needs.provision_infrastructure.outputs.bucket_name }}" >> $GITHUB_ENV
+          echo "frontend_key=${{ needs.provision_infrastructure.outputs.frontend_key }}" >> $GITHUB_ENV
+          echo "admin_key=${{ needs.provision_infrastructure.outputs.admin_key }}" >> $GITHUB_ENV
+          echo "backend_key=${{ needs.provision_infrastructure.outputs.backend_key }}" >> $GITHUB_ENV
+          echo "front_ver=${{ needs.provision_infrastructure.outputs.front_ver }}" >> $GITHUB_ENV
+          echo "admin_ver=${{ needs.provision_infrastructure.outputs.admin_ver }}" >> $GITHUB_ENV
+          echo "back_ver=${{ needs.provision_infrastructure.outputs.back_ver }}" >> $GITHUB_ENV
+          echo "front_env=${{ needs.provision_infrastructure.outputs.front_env }}" >> $GITHUB_ENV
+          echo "admin_env=${{ needs.provision_infrastructure.outputs.admin_env }}" >> $GITHUB_ENV
+          echo "back_env=${{ needs.provision_infrastructure.outputs.back_env }}" >> $GITHUB_ENV
+      - name: Deploy Zip file to Elastic Beanstalk environment
+        run: |
+          # Use the output from the previous step to deploy the docker containers to the Elastic Beanstalk environment
+          # Example: Use AWS CLI to deploy the zipped file to Elastic Beanstalk
+          aws elasticbeanstalk create-application-version --application-name ${{ needs.provision_infrastructure.outputs.app_env }} --version-label ${{ needs.provision_infrastructure.outputs.front_ver }} --source-bundle S3Bucket=$GITHUB_ENV.BUCKET_NAME,S3Key=$GITHUB_ENV.FRONTEND_KEY
+          aws elasticbeanstalk update-environment --environment-name ${{ needs.provision_infrastructure.outputs.front_env }} --version-label ${{ needs.provision_infrastructure.outputs.front_ver }}
           
-#           aws elasticbeanstalk create-application-version --application-name ${{ needs.provision_infrastructure.outputs.app_env }} --version-label ${{ needs.provision_infrastructure.outputs.admin_ver }} --source-bundle S3Bucket=$GITHUB_ENV.BUCKET_NAME,S3Key=$GITHUB_ENV.ADMIN_KEY
-#           aws elasticbeanstalk update-environment --environment-name ${{ needs.provision_infrastructure.outputs.admin_env }} --version-label ${{ needs.provision_infrastructure.outputs.admin_ver }}
+          aws elasticbeanstalk create-application-version --application-name ${{ needs.provision_infrastructure.outputs.app_env }} --version-label ${{ needs.provision_infrastructure.outputs.admin_ver }} --source-bundle S3Bucket=$GITHUB_ENV.BUCKET_NAME,S3Key=$GITHUB_ENV.ADMIN_KEY
+          aws elasticbeanstalk update-environment --environment-name ${{ needs.provision_infrastructure.outputs.admin_env }} --version-label ${{ needs.provision_infrastructure.outputs.admin_ver }}
           
-#           aws elasticbeanstalk create-application-version --application-name ${{ needs.provision_infrastructure.outputs.app_env }} --version-label ${{ needs.provision_infrastructure.outputs.back_ver }} --source-bundle S3Bucket=$GITHUB_ENV.BUCKET_NAME,S3Key=$GITHUB_ENV.BACKEND_KEY
-#           aws elasticbeanstalk update-environment --environment-name ${{ needs.provision_infrastructure.outputs.back_env }} --version-label ${{ needs.provision_infrastructure.outputs.back_ver }}
+          aws elasticbeanstalk create-application-version --application-name ${{ needs.provision_infrastructure.outputs.app_env }} --version-label ${{ needs.provision_infrastructure.outputs.back_ver }} --source-bundle S3Bucket=$GITHUB_ENV.BUCKET_NAME,S3Key=$GITHUB_ENV.BACKEND_KEY
+          aws elasticbeanstalk update-environment --environment-name ${{ needs.provision_infrastructure.outputs.back_env }} --version-label ${{ needs.provision_infrastructure.outputs.back_ver }}
