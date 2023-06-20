@@ -10,7 +10,7 @@ resource "aws_elastic_beanstalk_environment" "frontend" {
   application         = aws_elastic_beanstalk_application.webapp_deploy.name
   version_label         = aws_elastic_beanstalk_application_version.frontend_version.name
   solution_stack_name = "64bit Amazon Linux 2 v3.2.8 running ECS"
-  wait_for_ready_timeout = "15m"
+  # wait_for_ready_timeout = "15m"
 
   # setting {
   #   namespace = "aws:ec2:vpc"
@@ -138,7 +138,7 @@ resource "aws_elastic_beanstalk_environment" "admin" {
   application         = aws_elastic_beanstalk_application.webapp_deploy.name
   version_label         = aws_elastic_beanstalk_application_version.admin_version.name
   solution_stack_name = "64bit Amazon Linux 2 v3.2.8 running ECS"
-  wait_for_ready_timeout = "15m"
+  # wait_for_ready_timeout = "15m"
 
   # setting {
   #   namespace = "aws:ec2:vpc"
@@ -272,7 +272,7 @@ resource "aws_elastic_beanstalk_environment" "backend" {
   application         = aws_elastic_beanstalk_application.webapp_deploy.name
   version_label         = aws_elastic_beanstalk_application_version.backend_version.name
   solution_stack_name = "64bit Amazon Linux 2 v3.2.8 running ECS"
-  wait_for_ready_timeout = "15m"
+  # wait_for_ready_timeout = "15m"
 
   # setting {
   #   namespace = "aws:ec2:vpc"
